@@ -3,7 +3,7 @@ dashboard:
   guard-url: http://localhost:8082/actuator/rates
   letter-signature-url: http://localhost:8081/actuator/rates
   serviceMap:
-    letter-grabber-url1: http://localhost:8080/actuator/rates
+    classic-rest: http://localhost:8090/actuator/rates
     guard-url1: http://localhost:8082/actuator/rates
     letter-signature-url1: http://localhost:8081/actuator/rates
 
