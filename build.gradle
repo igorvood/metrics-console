@@ -2,6 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.6.4'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'groovy'
+
 }
 
 group = 'ru.vood.metrics'
@@ -13,8 +14,51 @@ repositories {
 }
 
 dependencies {
+//    implementation 'org.codehaus.groovy:groovy-all'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.codehaus.groovy:groovy'
+
+    implementation 'org.springframework.boot:spring-boot-starter-web',
+            'org.springframework.boot:spring-boot-starter-actuator',
+            'io.rsocket:rsocket-transport-netty',
+            'io.projectreactor:reactor-core',
+            'com.google.guava:guava',
+            'io.dropwizard.metrics:metrics-core',
+            'org.beryx:text-io',
+            'org.beryx:text-io-web',
+            'org.fusesource.jansi:jansi'
+    constraints {
+        ['org.projectlombok:lombok:1.18.2'].each {
+            compileOnly it
+            annotationProcessor it
+            testAnnotationProcessor it
+        }
+
+        ['com.github.javafaker:javafaker:0.16',
+         'io.dropwizard.metrics:metrics-core:+',
+         'org.beryx:text-io:3.3.0',
+         'org.beryx:text-io-web:3.3.0',
+         'org.fusesource.jansi:jansi:1.17.1',
+         'org.codehaus.groovy:groovy-all:2.5.6',
+         'com.google.guava:guava:27.1-jre',
+         'com.github.CollaborationInEncapsulation.spring-boot-rsocket:spring-boot-starter-rsocket:0.0.1.RELEASE',
+         'io.rsocket:rsocket-transport-netty:0.11.14',
+        ].each {
+            implementation it
+        }
+
+    }
+
+    ['org.projectlombok:lombok',
+     'org.springframework.boot:spring-boot-configuration-processor',
+    ].each {
+        compileOnly it
+        testCompileOnly it
+        annotationProcessor it
+        testAnnotationProcessor it
+    }
+
+    runtimeClasspath 'org.springframework.boot:spring-boot-devtools'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
